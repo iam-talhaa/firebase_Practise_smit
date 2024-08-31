@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:f_firebase/ui/auth/signup/signup.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,6 +13,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    Timer(Duration(seconds: 4), () {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => signUpScreen()));
+    });
     // TODO: implement initState
     super.initState();
   }
