@@ -58,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: Icon(Icons.lock),
                     hintText: "Password"),
               ),
+              Divider(),
               Row(
                 children: [
                   Text("Don't Have an Account"),
