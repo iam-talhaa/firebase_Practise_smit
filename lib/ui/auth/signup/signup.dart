@@ -39,6 +39,7 @@ class _signUpScreenState extends State<signUpScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("SignUp Screen"),
+        actions: [],
       ),
       backgroundColor: Colors.grey,
       body: Padding(
