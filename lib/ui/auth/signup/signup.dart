@@ -39,7 +39,7 @@ class _signUpScreenState extends State<signUpScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("SignUp Screen"),
-        actions: [],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
       ),
       backgroundColor: Colors.grey,
       body: Padding(
