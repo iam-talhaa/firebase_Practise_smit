@@ -19,11 +19,25 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
+  void Login() {
+    _auth
+        .signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+        .then((v) {
+      UTils().Toastmsg("Sign In SuccessFull", Colors.green);
+
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+    }).onError((Error, s) {
+      UTils().Toastmsg(Error.toString(), Colors.red);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.lightBlue[200],
         title: Text("Login Screen"),
       ),
       body: Form(
@@ -91,18 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   B_color: Colors.black,
                   ontap: () {
                     if (_formkey.currentState!.validate()) {
-                      _auth
-                          .signInWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text)
-                          .then((v) {
-                        UTils().Toastmsg("Sign In SuccessFull");
-
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => HomeScreen()));
-                      }).onError((Error, s) {
-                        UTils().Toastmsg(Error.toString());
-                      });
+                      Login();
                     }
                   },
                   B_text: "Login ",

@@ -26,10 +26,10 @@ class _signUpScreenState extends State<signUpScreen> {
             email: EmailContorller.text.toString().trim(),
             password: PasswordController.text.toString().trim())
         .then((v) {
-      UTils().Toastmsg("SignUp SuccessFul");
+      UTils().Toastmsg("SignUp SuccessFul", Colors.green);
     }).onError(
       (error, stackTrace) {
-        UTils().Toastmsg(error.toString());
+        UTils().Toastmsg(error.toString(), Colors.red);
       },
     );
   }
@@ -38,6 +38,7 @@ class _signUpScreenState extends State<signUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.lightBlue[200],
         title: Text("SignUp Screen"),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
       ),
@@ -85,7 +86,7 @@ class _signUpScreenState extends State<signUpScreen> {
                     hintText: "Password"),
               ),
               SizedBox(
-                height: 20,
+                height: 40.h,
               ),
               Custom_button(
                 B_color: Colors.black,
@@ -97,6 +98,9 @@ class _signUpScreenState extends State<signUpScreen> {
                 B_text: 'Sign UP',
                 B_height: 40.h,
                 B_width: 150.w,
+              ),
+              SizedBox(
+                height: 30.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
