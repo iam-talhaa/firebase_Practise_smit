@@ -26,7 +26,7 @@ class _signUpScreenState extends State<signUpScreen> {
             email: EmailContorller.text.toString().trim(),
             password: PasswordController.text.toString().trim())
         .then((v) {
-      UTils().Toastmsg("Login Success Fully");
+      UTils().Toastmsg("SignUp SuccessFul");
     }).onError(
       (error, stackTrace) {
         UTils().Toastmsg(error.toString());
@@ -41,7 +41,6 @@ class _signUpScreenState extends State<signUpScreen> {
         title: Text("SignUp Screen"),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
       ),
-      backgroundColor: Colors.grey,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Form(
@@ -50,6 +49,7 @@ class _signUpScreenState extends State<signUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your Email';
@@ -68,6 +68,7 @@ class _signUpScreenState extends State<signUpScreen> {
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your password';
@@ -100,7 +101,10 @@ class _signUpScreenState extends State<signUpScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already Have an Account"),
+                  Text(
+                    "Already Have an Account",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(

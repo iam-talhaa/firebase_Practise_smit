@@ -1,5 +1,8 @@
 import 'package:f_firebase/Custom_widgets/custom_button.dart';
+import 'package:f_firebase/Utils/Utils.dart';
 import 'package:f_firebase/ui/auth/signup/signup.dart';
+import 'package:f_firebase/ui/home/homeScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,6 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your Email';
@@ -46,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.black),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your password';
@@ -61,10 +68,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: Icon(Icons.lock),
                     hintText: "Password"),
               ),
+              SizedBox(
+                height: 30,
+              ),
               Divider(),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't Have an Account"),
+                  Text(
+                    "Don't Have an Account",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -76,7 +90,20 @@ class _LoginScreenState extends State<LoginScreen> {
               Custom_button(
                   B_color: Colors.black,
                   ontap: () {
-                    print("CHECHEK");
+                    if (_formkey.currentState!.validate()) {
+                      _auth
+                          .signInWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text)
+                          .then((v) {
+                        UTils().Toastmsg("Sign In SuccessFull");
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => HomeScreen()));
+                      }).onError((Error, s) {
+                        UTils().Toastmsg(Error.toString());
+                      });
+                    }
                   },
                   B_text: "Login ",
                   B_height: 45.h,
