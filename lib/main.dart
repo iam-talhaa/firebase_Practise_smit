@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
+        print('sd');
+
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'First Method',
