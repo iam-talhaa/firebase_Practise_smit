@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
         print('sd');
+        print('sd');
 
         return MaterialApp(
           debugShowCheckedModeBanner: false,
